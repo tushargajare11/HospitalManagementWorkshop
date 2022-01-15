@@ -1,12 +1,46 @@
 package com.bl.hms;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class AppointmentRepo {
-    List appointmentList = new ArrayList();
+    private static AppointmentRepo instance;
+    HashSet<Appointment> appointmentSet = new HashSet<>();
+    UserInterface userInterface = UserInterface.getInstance();
 
-    public void add(Appointment appointment) {
-        appointmentList.add(appointment);
+    AppointmentRepo(){
+    }
+
+    public static synchronized AppointmentRepo getInstance(){
+        if ( instance == null){
+            instance = new AppointmentRepo();
+        }
+        return instance;
+    }
+
+    void addAppointment() {
+        Appointment appointment = userInterface.addAppointment();
+        appointmentSet.add(appointment);
+    }
+
+    Set<Appointment> getAppointmentSet() {
+        return appointmentSet;
+    }
+    public Appointment getAppointment(String id) {
+        for (Appointment appointment : appointmentSet) {
+            return appointment;
+        }
+        return null;
+    }
+
+    public void remove(Appointment appointment) {
+        appointmentSet.remove(appointment);
+    }
+
+    public void printAllAppointment(Set appointmentSet) {
+        for (Object appointment : appointmentSet) {
+            System.out.println(appointment);
+        }
     }
 }
+
