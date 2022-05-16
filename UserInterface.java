@@ -41,16 +41,16 @@ public class UserInterface {
         Doctor doctor = new Doctor();
 
         System.out.println("Enter Doctor Name :");
-        doctor.docName = scanner.nextLine();
+        doctor.docName = scanner.next();
 
         System.out.println("Enter Doctor Specialization :");
-        doctor.specialization = scanner.nextLine();
+        doctor.specialization = scanner.next();
 
         System.out.println("Enter Doctor Email ID :");
-        doctor.emailID = scanner.nextLine();
+        doctor.emailID = scanner.next();
 
         System.out.println("Enter Doctor ID :");
-        doctor.id = scanner.nextLine();
+        doctor.id = scanner.next();
 
         System.out.println("Enter Doctor Mobile Name :");
         doctor.mobNo = scanner.nextLong();
