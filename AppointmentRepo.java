@@ -2,6 +2,7 @@ package com.bl.hms;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class AppointmentRepo {
     private static AppointmentRepo instance;
@@ -26,11 +27,12 @@ public class AppointmentRepo {
     Set<Appointment> getAppointmentSet() {
         return appointmentSet;
     }
+
     public Appointment getAppointment(String id) {
-        for (Appointment appointment : appointmentSet) {
-            return appointment;
-        }
-        return null;
+      //  for (Appointment appointment : appointmentSet) {
+          //  return appointment;
+       // }
+        return appointmentSet.stream().filter(appointment -> appointment.appointmentId.equals(id)).findFirst().orElse(null);
     }
 
     public void remove(Appointment appointment) {
@@ -38,9 +40,11 @@ public class AppointmentRepo {
     }
 
     public void printAllAppointment(Set appointmentSet) {
-        for (Object appointment : appointmentSet) {
-            System.out.println(appointment);
-        }
+        //for (Object appointment : appointmentSet) {
+          //  System.out.println(appointment);
+       // }
+        appointmentSet.stream().forEach(System.out :: println);
     }
 }
+
 
