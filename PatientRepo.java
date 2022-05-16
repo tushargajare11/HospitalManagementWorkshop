@@ -1,6 +1,7 @@
 package com.bl.hms;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class PatientRepo {
     public static PatientRepo instance;
@@ -23,21 +24,23 @@ public class PatientRepo {
     }
 
     public boolean isPatientAvailable(String patientId){
-        for (Patient patient : patientSet){
-            if( patient.patientId.equals(patientId)){
-                return true;
-            }
-        }
-        return false;
+        //for (Patient patient : patientSet){
+           // if( patient.patientId.equals(patientId)){
+               // return true;
+           // }
+       // }
+        return patientSet.stream().filter(patient -> patient.patientId.equals(patientId))
+                .collect(Collectors.toSet()).size() > 0 ? true : false;
     }
 
     public Patient getPatient(String id) {
-        for (Patient patient : patientSet) {
-            if (patient.patientId.equals(id)) {
-                return patient;
-            }
-        }
-        return null;
+       // for (Patient patient : patientSet) {
+           // if (patient.patientId.equals(id)) {
+              //  return patient;
+           // }
+        //}
+        return patientSet.stream().filter(patient -> patient.patientId.equals(id)).findFirst().orElse(null);
+
     }
 
     public void remove(Patient patientRemove) {
@@ -45,9 +48,12 @@ public class PatientRepo {
     }
 
     public void printAllPatient(Set patientList) {
-        for (Patient patient : patientSet) {
-            System.out.println(patient);
-        }
+        //for (Patient patient : patientSet) {
+          //  System.out.println(patient);
+        //}
+        patientSet.stream().forEach(System.out :: println);
     }
 }
+
+
 
